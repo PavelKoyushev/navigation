@@ -12,7 +12,14 @@ public class NavigationViewCoordinator<T: Coordinatable>: ViewWrapperCoordinator
                 }
             )
             #else
-            if #available(iOS 16.0, *) {
+            if #available(iOS 16.4, *) {
+                AnyView(
+                    SwiftUI.NavigationView {
+                        view
+                    }
+                    .navigationViewStyle(StackNavigationViewStyle())
+                )
+            } else if #available(iOS 16.0, *) {
                 AnyView(
                     SwiftUI.NavigationStack {
                         view
